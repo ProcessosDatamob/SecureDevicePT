@@ -1,4 +1,4 @@
-# Guia de Integração e Uso da Biblioteca DeviceSeguro V1.2.0
+# Guia de Integração e Uso da Biblioteca DeviceSeguro V1.3.0
 
 ### 1. Introdução à biblioteca
 

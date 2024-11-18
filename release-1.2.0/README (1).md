@@ -1,4 +1,4 @@
-# Release 1.2.0
+# Release 1.3.0
 
 ### Informação de Licença
 
@@ -15,6 +15,16 @@ O uso, distribuição ou modificação deste código fonte é estritamente proib
 Autor(es): Teixeira, P; Manica, L; Spotti, L. Email: suporte@datamob.net.br
 
 ### Histórico de versão
+
+#### Versão 1.3.0
+
+Data: 18/11/2024
+
+**Changelog**
+
+* Implementa comunicação com API Web para atualização do status dos comandos recebidos.
+* Muda a dependência da biblioteca androidx-security-crypto para a versão 1.0.0.
+* Ajusta manifest da biblioteca para mapear os icones e labels do aplicativo.
 
 #### Versão 1.2.0
 
@@ -79,7 +89,7 @@ dependencies {
 
 Para instruções detalhadas, consulte:
 
-* [Guia de Integração da biblioteca (formato DOC)](guia-de-integracao-e-uso-da-biblioteca-deviceseguro-v1.2.0.md)
+* [Guia de Integração da biblioteca (formato DOC)](<README (1).md>)
 * [Referência da Biblioteca (javadoc)](https://drive.google.com/drive/folders/1ehfXPIr7xKbp8kCNqzJkIJ9Po5rFYz-z?usp=sharing)
 
 ### Permissões utilizadas
