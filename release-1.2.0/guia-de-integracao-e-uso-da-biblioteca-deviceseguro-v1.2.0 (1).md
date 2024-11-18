@@ -318,9 +318,9 @@ const val ACTION_COMMAND_FAILED: String = "br.net.datamob.dslib.ACTION_COMMAND_F
 
 ```
 
-#### 4.1 Comunicação do Status do Comando
+#### 4.1 Comunicação do Status do Comando via HTTP
 
-É possível&#x20;
+Na versão 1.3.0 da biblioteca é possível configurar o SDK para que seja enviado o status de um comando recebido através de uma API rest. Para habilitar essa funcionalidade, é necessário configurar uma Chave de API e uma URL para recebimento do status. Esta configuração é realizada adicionando-se dinamicamente os "resources" no arquivo "build.gradle" do aplicativo, conforme o exemplo abaixo:
 
 ```
 android {
@@ -332,3 +332,19 @@ android {
 }
 ```
 
+Ao receber um comando, a biblioteca processa o hash recebido e informa a API com um payload no seguinte formato, onde "status" é o resultado do recebimento do comando.
+
+```
+HTTP Url: <API_URL> /command/{{$commandId}}/status
+
+HTTP Method: PATCH
+
+HTTP Header: key=<API_KEY>
+
+HTTP Content: application/json
+
+HTTP Body:
+{
+    "status": ["SUCCESS | "FAILED"]
+}
+```
