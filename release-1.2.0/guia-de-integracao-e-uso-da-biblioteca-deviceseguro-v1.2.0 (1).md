@@ -62,7 +62,7 @@ Após adicionar a dependência, clique em "Sync Now" na barra de notificações 
 
 2.3.1 Confirmar Importação Bem-Sucedida
 
-Para confirmar que a biblioteca foi importada corretamente, tente usar uma classe ou método fornecido pela dslib-1.2.0-release.aar em uma das suas classes de código-fonte. Se a importação e a sincronização estiverem corretas, o Android Studio não exibirá erros de compilação.
+Para confirmar que a biblioteca foi importada corretamente, tente usar uma classe ou método fornecido pela biblioteca em uma das suas classes de código-fonte. Se a importação e a sincronização estiverem corretas, o Android Studio não exibirá erros de compilação.
 
 Exemplo:
 
@@ -148,7 +148,7 @@ ACTION\_LOCK\_PASS\_QUALITY\_MISSING: Disparado em resposta à mudança de senha
 
 #### 2.5 Pronto para usar!
 
-Agora, sua biblioteca dslib-1.2.0-release.aar está pronta para ser utilizada no seu projeto. Siga para os próximos passos para aprender como configurar e utilizar suas funcionalidades.
+Agora, sua biblioteca DeviceSeguro V1.3.0 está pronta para ser utilizada no seu projeto. Siga para os próximos passos para aprender como configurar e utilizar suas funcionalidades.
 
 ### 3. Pré-requisitos
 
@@ -317,3 +317,18 @@ const val ACTION_COMMAND_RECEIVED: String = "br.net.datamob.dslib.ACTION_COMMAND
 const val ACTION_COMMAND_FAILED: String = "br.net.datamob.dslib.ACTION_COMMAND_FAILED"
 
 ```
+
+#### 4.1 Comunicação do Status do Comando
+
+É possível&#x20;
+
+```
+android {
+    defaultConfig {
+        ...
+        resValue("string", "api_key", "<API_KEY>")
+        resValue("string", "api_url", "<API_URL>")
+    }
+}
+```
+
