@@ -89,7 +89,7 @@ dependencies {
 
 Para instruções detalhadas, consulte:
 
-* [Guia de Integração da biblioteca (formato DOC)](<README (1).md>)
+* [Guia de Integração da biblioteca (formato DOC)](<guia-de-integracao-e-uso-da-biblioteca-deviceseguro-v1.2.0 (1).md>)
 * [Referência da Biblioteca (javadoc)](https://drive.google.com/drive/folders/1ehfXPIr7xKbp8kCNqzJkIJ9Po5rFYz-z?usp=sharing)
 
 ### Permissões utilizadas
