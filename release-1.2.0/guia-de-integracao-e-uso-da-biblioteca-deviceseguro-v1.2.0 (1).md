@@ -292,59 +292,42 @@ DeviceSeguro.register(context = context, phoneNumber = "41998626807", tokenPassw
 
 ### 4 Comandos
 
-Para que a biblioteca possa executar as operações de Lock e Wipe, a aplicação deve realizar uma chamada para o método DeviceSeguro.executeMessageReceived() nos pontos de entrada dos canais de comunicação definidos pelo app. A biblioteca não define nem restringe quais canais podem ser utilizados, ficando a cargo da aplicação defini-los.
+Para que a biblioteca possa executar as operações de Lock e Wipe, a aplicação deve encaminhar um String codificado (hash) para um dos métodos de início do fluxo de execução de comandos disponíveis:
 
-No exemplo abaixo, o aplicativo implementa um Receiver responsável pelo recebimento de mensagens via Firebase Cloud Message (PUSH).
+1. Método DeviceSeguro.executeMessageReceived()
+
+O método DeviceSeguro.executeMessageReceived() está disponível como uma função customizável, que é parametrizada por um parâmetro Map (chave -> valor). Ao utilizar-se este método, é necessário que o objeto tenha minimamente uma chave "COMMAND" mapeando a informação de comando recebida pelo componente da API Rest.
+
+Exemplo:
 
 ```
-
-
-class LocalFirebaseMessagingService : FirebaseMessagingService() {
-   private val TAG = "LocalFirebaseMessagingService"
-   override fun onMessageReceived(message: RemoteMessage) {
-       super.onMessageReceived(message)
-       DeviceSeguro.executeMessageReceived(this, message.data)
-   }
+override fun onMessageReceived(message: RemoteMessage) {
+    val params: Map<String, String> = hashMapOf(Pair("COMMAND", message.commandHash))
+    DeviceSeguro.executeMessageReceived(this, params)
 }
-
 ```
 
-A comunicação é realizada através do BroadcastReceiver configurado na inicialização. São registrados os eventos:
+2. Método DeviceSeguro.executeCommand()
+
+Este método é mais direto e recebe apenas o String do comando codificado e enviado pela API.
+
+Exemplo:
 
 ```
+override fun onMessageReceived(commandHash: String) {
+    DeviceSeguro.executeCommand(context, commandHash)
+}
+```
 
+A biblioteca não define nem restringe quais canais podem ser utilizados, ficando a cargo da aplicação defini-los.
+
+#### Status do comando
+
+A comunicação da biblioteca com o aplicativo, no contexto da execução e retorno do comando, é realizada através de um BroadcastReceiver. Se o aplicativo registrar um BroadcastReceiver através do método DeviceSeguro.initializeBroadcastReceiver(), (conforme seção 2.4 - Inicialização) então os eventos serão capturados por esta instância.
+
+O aplicativo pode registrar um BroadcastReceiver manualmente utilizando ContextCompat.registerReceiver() e informando um IntentFilter para as ações disparadas pelos eventos do SDK. Os seguintes eventos são disparados:
+
+```
 const val ACTION_COMMAND_RECEIVED: String = "br.net.datamob.dslib.ACTION_COMMAND_RECEIVED"
 const val ACTION_COMMAND_FAILED: String = "br.net.datamob.dslib.ACTION_COMMAND_FAILED"
-
-```
-
-#### 4.1 Comunicação do Status do Comando via HTTP
-
-Na versão 1.3.0 da biblioteca é possível configurar o SDK para que seja enviado o status de um comando recebido através de uma API rest. Para habilitar essa funcionalidade, é necessário configurar uma Chave de API e uma URL para recebimento do status. Esta configuração é realizada adicionando-se dinamicamente os "resources" no arquivo "build.gradle" do aplicativo, conforme o exemplo abaixo:
-
-```
-android {
-    defaultConfig {
-        ...
-        resValue("string", "api_key", "<API_KEY>")
-        resValue("string", "api_url", "<API_URL>")
-    }
-}
-```
-
-Ao receber um comando, a biblioteca processa o hash recebido e informa a API com um payload no seguinte formato, onde "status" é o resultado do recebimento do comando.
-
-```
-HTTP Url: <API_URL> /command/{{$commandId}}/status
-
-HTTP Method: PATCH
-
-HTTP Header: key=<API_KEY>
-
-HTTP Content: application/json
-
-HTTP Body:
-{
-    "status": ["SUCCESS | "FAILED"]
-}
 ```
