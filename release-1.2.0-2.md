@@ -1,4 +1,4 @@
-# Release 1.2.3
+# Release 1.2.1
 
 ### Informação de Licença
 
@@ -15,18 +15,6 @@ O uso, distribuição ou modificação deste código fonte é estritamente proib
 Autor(es): Teixeira, P; Manica, L; Spotti, L. Email: suporte@datamob.net.br
 
 ### Histórico de versão
-
-#### Versão 1.2.3
-
-Data: 10/01/2024
-
-**Changelog**
-
-* Remove a obrigatoriedade da verificação de conta Google no dispositivo para realizar o registro através do comando _DeviceSeguro_._register_.
-
-#### Versão 1.2.1
-
-Esta versão foi desativada.
 
 #### Versão 1.2.1
 

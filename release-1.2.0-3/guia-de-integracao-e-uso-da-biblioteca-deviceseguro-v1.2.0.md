@@ -37,7 +37,7 @@ O acesso é realizado através de credenciais exclusivas do cliente, que são di
 
 * REPOSITORY\_URL: Url de acesso aos recursos da biblioteca.
 * USERNAME: Identificação de acesso do usuário.
-* ACESS\_TOKEN: Token de autenticação.
+* ACCESS\_TOKEN: Token de autenticação.
 * EXPIRATION\_DATE: Data de expiração do token de acesso.
 
 #### 2.2 Adicionar a dependência ao Gradle
@@ -154,25 +154,25 @@ Agora, sua biblioteca dslib-1.2.0-release.aar está pronta para ser utilizada no
 
 Para utilizar a biblioteca **DeviceSeguro** e registrar um usuário no sistema, é necessário atender a alguns pré-requisitos fundamentais. Estes requisitos garantem que o aplicativo e o dispositivo estejam corretamente configurados para permitir a execução dos comandos de controle remoto com segurança.
 
-Esses pré-requisitos são validados automaticamente ao chamar o método DeviceSeguro.register(), e caso algum não seja atendido, uma exceção específica que acusa o pré-requisito faltante é levantada.
+Esses pré-requisitos são validados automaticamente ao chamar o método _DeviceSeguro.register_(), e caso algum não seja atendido, uma exceção específica que acusa o pré-requisito faltante é levantada.&#x20;
 
 A biblioteca disponibiliza um helper (DeviceSeguroPreRequisitesHelper) que pode ser utilizado para validar se os pré-requisitos estão configurados corretamente. Isso pode ser feito através do método “validatePrerequisites”, que verificará cada pré-requisito, levantando exceções em caso de requisitos faltantes. Outra possibilidade é utilizar os métodos específicos para cada pré-requisito, conforme descritos abaixo:
 
-| _**Pré-requisito**_                  | _**Método de validação**_                                                      |
-| ------------------------------------ | ------------------------------------------------------------------------------ |
+| _**Pré-requisito**_                  | _**Método de validação**_                                                      | _**Obrigatório**_ |
+| ------------------------------------ | ------------------------------------------------------------------------------ | ----------------- |
 | Administrador de Dispositivo         | <pre><code>fun isDeviceAdmin(context: Context): Boolean
-</code></pre>          |
+</code></pre>          | Sim               |
 | Conta Google vinculada               | <pre><code>fun hasGoogleAccount(context: Context): Boolean
-</code></pre>       |
+</code></pre>       | Não               |
 | Segurança mínima na tela de bloqueio | <pre><code>fun hasLockPassword(context: Context): Boolean
-</code></pre>        |
+</code></pre>        | Sim               |
 | Opções de Acessibilidade             | <pre><code>fun hasAccessibilityOption(context: Context): Boolean
-</code></pre> |
+</code></pre> | Sim               |
 | Número de telefone                   | <pre><code>fun validatePhoneNumber(phoneNumber: String): Boolean
-</code></pre> |
+</code></pre> | Sim               |
 | Senha                                | <pre><code>
 fun validateToken(token: String): Boolean
-</code></pre>            |
+</code></pre>            | Sim               |
 
 #### 3.1 Aplicativo como Administrador de Dispositivo
 
@@ -218,6 +218,20 @@ if (intent != null) {
 ```
 
 Caso seja iniciado o processo de registro sem que haja uma conta Google vinculada ao dispositivo, uma exceção do tipo “DeviceSeguroMissingGoogleAccountException” é levantada.
+
+{% hint style="info" %}
+OBSERVAÇÃO
+
+A partir da Versão 1.2.3 o requisito Conta Google vinculada passou a ser opcional por padrão. A validação não irá bloquear o registro através do lançamento da exceção, mesmo assim é possível configurá-lo como obrigatório se necessário.
+
+Para configuração de um requisito ser obrigatório é necessário acionar o método:
+
+
+
+```
+DeviceSeguroPreRequisitesHelper.configureValidations(isGoogleAccountRequired: Boolean)
+```
+{% endhint %}
 
 #### 3.3 Opções de Acessibilidade
 
