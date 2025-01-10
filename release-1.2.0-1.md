@@ -18,7 +18,7 @@ Autor(es): Teixeira, P; Manica, L; Spotti, L. Email: suporte@datamob.net.br
 
 #### Versão 1.2.3
 
-Data: 10/01/2024
+Data: 10/01/2025
 
 **Changelog**
 
