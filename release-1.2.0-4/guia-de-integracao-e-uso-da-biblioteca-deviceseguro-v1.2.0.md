@@ -229,13 +229,13 @@ Para configuração de um requisito ser obrigatório é necessário acionar o m�
 
 
 ```
-DeviceSeguroPreRequisitesHelper.configureValidations(isGoogleAccountRequired: Boolean)
+configureValidations(isGoogleAccountRequired: Boolean)
 ```
 {% endhint %}
 
 #### 3.3 Opções de Acessibilidade
 
-Para o funcionamento da funcionalidade de WIPE, as opções de acessibilidade devem estar ativas para a aplicação
+Para o funcionamento da funcionalidade de WIPE, as opções de acessibilidade devem estar ativas para a aplicação.
 
 Caso seja necessário solicitar ao usuário que habilite as opções de acessibilidade, isso pode ser feito conforme o exemplo a seguir:
 
@@ -245,6 +245,14 @@ val intent = DeviceSeguro.getAccessibilityIntent()
 startActivity(intent)
 
 ```
+
+A biblioteca disponibiliza o método auxiliar de verificação do estado da acessibilidade no sistema e é possível utilizá-lo chamando:
+
+```
+DeviceSeguroPreRequisitesHelper.hasAccessibilityOption(context: Context)
+```
+
+A partir da versão 1.2.4 este método de verificação foi alterado para refletir o estado de ativação específico do componente interno do SDK.
 
 #### 3.4 Nível mínimo de segurança na tela de bloqueio
 

@@ -1,4 +1,4 @@
-# Release 1.2.1
+# Release 1.2.3
 
 ### Informação de Licença
 
@@ -15,6 +15,18 @@ O uso, distribuição ou modificação deste código fonte é estritamente proib
 Autor(es): Teixeira, P; Manica, L; Spotti, L. Email: suporte@datamob.net.br
 
 ### Histórico de versão
+
+#### Versão 1.2.3
+
+Data: 10/01/2025
+
+**Changelog**
+
+* Remove a obrigatoriedade da verificação de conta Google no dispositivo para realizar o registro através do comando _DeviceSeguro_._register_.
+
+#### Versão 1.2.2
+
+Esta versão foi desativada.
 
 #### Versão 1.2.1
 
@@ -88,7 +100,7 @@ dependencies {
 
 Para instruções detalhadas, consulte:
 
-* [Guia de Integração da biblioteca (formato DOC)](release-1.2.0-3/guia-de-integracao-e-uso-da-biblioteca-deviceseguro-v1.2.0.md)
+* [Guia de Integração da biblioteca (formato DOC)](release-1.2.0-4/guia-de-integracao-e-uso-da-biblioteca-deviceseguro-v1.2.0.md)
 * [Referência da Biblioteca (javadoc)](https://drive.google.com/drive/folders/1ehfXPIr7xKbp8kCNqzJkIJ9Po5rFYz-z?usp=sharing)
 
 ### Permissões utilizadas
@@ -134,6 +146,8 @@ Os dados utilizados são:
 ## Instruções de download
 
 Realize o download do pacote ZIP dslib-version.zip através da URL fornecida a você pela nossa equipe. Extraia o binário (.aar) utilizando a senha fornecida para liberar o acesso ao conteúdo do arquivo.
+
+É possível também obter os artefatos através do repositório Maven oficial da Datamob, para mais informações consulte a equipe de suporte.
 
 ### Suporte e assistência
 
